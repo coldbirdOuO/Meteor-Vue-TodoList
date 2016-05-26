@@ -9,13 +9,13 @@
                 			<span v-show="message && validation.message.maxLength ">too long!</span>
 			</div>
 		</form>
-		<ul>
+		<ol>
 			<li v-repeat='x:todosli | filterBy message'  track-by="_id">
 				[[x.text]]
 				<a v-on='click:deleteTodo(x._id)'>[delete]</a>
 			</li>
 
-		</ul>
+		</ol>
 
 	</div>
 </template>
