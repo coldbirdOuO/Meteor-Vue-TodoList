@@ -1,0 +1,21 @@
+<template name='todos'>
+	<div id="forVue">
+		<h2>[[title]]</h2>
+		<form v-on='submit:addTodo'>
+			<input type="text" v-model='message' v-validate="minLength: 6, maxLength:60" placeholder="type a task here..."  required>
+			<button v-attr="disabled: validation.message.invalid">Add <span> [[message ? "'" + message + "' ? " : '']]</span> </button>
+			<div>
+				<span v-show="message && validation.message.minLength ">at least 6 words!</span>
+                			<span v-show="message && validation.message.maxLength ">too long!</span>
+			</div>
+		</form>
+		<ul>
+			<li v-repeat='x:todosli | filterBy message'  track-by="_id">
+				[[x.text]]
+				<a v-on='click:deleteTodo(x._id)'>[delete]</a>
+			</li>
+
+		</ul>
+
+	</div>
+</template>
